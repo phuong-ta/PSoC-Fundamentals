@@ -1,0 +1,7 @@
+C:\Installer\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|4d9bedf7-9105-435c-b71c-92322159d10c
+C:\Users\phuon\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|937291a0-511b-4716-95e2-67193f670d71
+C:\Installer\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|bb5aa263-c873-4992-afa2-2b7fe17424de
+C:\Installer\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|e34d2299-8828-4758-b63f-f66ace55b50c
+C:\Installer\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|eaaacdec-cfb4-4700-9c07-972c211205d5
+C:\Users\phuon\Desktop\Program\PSoC Creator\Projects\Design01\Design01\Design01.cydsn\Design01.cyprj|c1e7e888-a3a9-48fd-a155-8e662327a706
+C:\Installer\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|2f9fa50d-22d3-4f25-a7d1-04bec9b1d0ca

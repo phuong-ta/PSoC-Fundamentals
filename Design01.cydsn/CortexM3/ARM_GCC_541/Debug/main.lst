@@ -1,0 +1,975 @@
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB63:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright Phuong.Ta, Metropolia UAS, Finland, 2023
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CC-NA/SA 4.0
+   8:main.c        ****  *
+   9:main.c        ****  * ========================================
+  10:main.c        **** */
+  11:main.c        **** #include "project.h"
+  12:main.c        **** #include <string.h>
+  13:main.c        **** 
+  14:main.c        **** int main(void)
+  15:main.c        **** {
+  28              		.loc 1 15 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 24
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 86B0     		sub	sp, sp, #24
+  37              		.cfi_def_cfa_offset 32
+  16:main.c        **** ;
+  17:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  38              		.loc 1 17 0
+  39              		.syntax unified
+  40              	@ 17 "main.c" 1
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 2
+
+
+  41 0004 62B6     		CPSIE   i
+  42              	@ 0 "" 2
+  43              	.LVL0:
+  18:main.c        ****     uint8 counter  = 0;
+  19:main.c        ****     char value[20];
+  20:main.c        ****     UART_Start();
+  44              		.loc 1 20 0
+  45              		.thumb
+  46              		.syntax unified
+  47 0006 FFF7FEFF 		bl	UART_Start
+  48              	.LVL1:
+  21:main.c        ****     UART_PutString("phuong\r\n");
+  49              		.loc 1 21 0
+  50 000a 1048     		ldr	r0, .L6
+  51 000c FFF7FEFF 		bl	UART_PutString
+  52              	.LVL2:
+  18:main.c        ****     uint8 counter  = 0;
+  53              		.loc 1 18 0
+  54 0010 0024     		movs	r4, #0
+  55              	.LVL3:
+  56              	.L2:
+  22:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  23:main.c        ****     for(;;)
+  24:main.c        ****     {   
+  25:main.c        ****         /* Place your application code here. */
+  26:main.c        ****         /* EX2
+  27:main.c        ****         LED1_Write(counter ++ % 2);
+  28:main.c        ****         CyDelay(500);
+  29:main.c        ****         */
+  30:main.c        ****         
+  31:main.c        ****         /* Ex3
+  32:main.c        ****         if (Button_Read() ==0)
+  33:main.c        ****         {
+  34:main.c        ****             LED1_Write(1);
+  35:main.c        ****             CyDelay(500);
+  36:main.c        ****             LED1_Write(0);
+  37:main.c        ****         }
+  38:main.c        ****         */
+  39:main.c        ****         // Ex4
+  40:main.c        ****         if (Button_Read() ==0)
+  57              		.loc 1 40 0
+  58 0012 FFF7FEFF 		bl	Button_Read
+  59              	.LVL4:
+  60 0016 58B9     		cbnz	r0, .L3
+  41:main.c        ****         {
+  42:main.c        ****             LED1_Write(1);
+  61              		.loc 1 42 0
+  62 0018 0120     		movs	r0, #1
+  63 001a FFF7FEFF 		bl	LED1_Write
+  64              	.LVL5:
+  43:main.c        ****             CyDelay(500);
+  65              		.loc 1 43 0
+  66 001e 4FF4FA70 		mov	r0, #500
+  67 0022 FFF7FEFF 		bl	CyDelay
+  68              	.LVL6:
+  44:main.c        ****             LED1_Write(0);
+  69              		.loc 1 44 0
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 3
+
+
+  70 0026 0020     		movs	r0, #0
+  71 0028 FFF7FEFF 		bl	LED1_Write
+  72              	.LVL7:
+  45:main.c        ****             counter+=1;
+  73              		.loc 1 45 0
+  74 002c 0134     		adds	r4, r4, #1
+  75              	.LVL8:
+  76 002e E4B2     		uxtb	r4, r4
+  77              	.LVL9:
+  78              	.L3:
+  46:main.c        **** 
+  47:main.c        ****         }
+  48:main.c        ****         if(UART_GetChar())
+  79              		.loc 1 48 0
+  80 0030 FFF7FEFF 		bl	UART_GetChar
+  81              	.LVL10:
+  82 0034 0028     		cmp	r0, #0
+  83 0036 ECD0     		beq	.L2
+  84              	.LBB2:
+  49:main.c        ****         {
+  50:main.c        ****             sprintf(value, "%d\r\n", counter);
+  85              		.loc 1 50 0
+  86 0038 2246     		mov	r2, r4
+  87 003a 0549     		ldr	r1, .L6+4
+  88 003c 01A8     		add	r0, sp, #4
+  89 003e FFF7FEFF 		bl	sprintf
+  90              	.LVL11:
+  51:main.c        ****             UART_PutString(value);
+  91              		.loc 1 51 0
+  92 0042 01A8     		add	r0, sp, #4
+  93 0044 FFF7FEFF 		bl	UART_PutString
+  94              	.LVL12:
+  95 0048 E3E7     		b	.L2
+  96              	.L7:
+  97 004a 00BF     		.align	2
+  98              	.L6:
+  99 004c 00000000 		.word	.LC0
+ 100 0050 0C000000 		.word	.LC1
+ 101              	.LBE2:
+ 102              		.cfi_endproc
+ 103              	.LFE63:
+ 104              		.size	main, .-main
+ 105              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 106              		.align	2
+ 107              	.LC0:
+ 108 0000 7068756F 		.ascii	"phuong\015\012\000"
+ 108      6E670D0A 
+ 108      00
+ 109 0009 000000   		.space	3
+ 110              	.LC1:
+ 111 000c 25640D0A 		.ascii	"%d\015\012\000"
+ 111      00
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "c:\\installer\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-non
+ 115              		.file 3 "c:\\installer\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-non
+ 116              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 4
+
+
+ 117              		.file 5 "<built-in>"
+ 118              		.file 6 "Generated_Source\\PSoC5/UART.h"
+ 119              		.file 7 "Generated_Source\\PSoC5/Button.h"
+ 120              		.file 8 "Generated_Source\\PSoC5/LED1.h"
+ 121              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 122              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 123              		.section	.debug_info,"",%progbits
+ 124              	.Ldebug_info0:
+ 125 0000 2C020000 		.4byte	0x22c
+ 126 0004 0400     		.2byte	0x4
+ 127 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 128 000a 04       		.byte	0x4
+ 129 000b 01       		.uleb128 0x1
+ 130 000c 37000000 		.4byte	.LASF26
+ 131 0010 0C       		.byte	0xc
+ 132 0011 B3010000 		.4byte	.LASF27
+ 133 0015 02010000 		.4byte	.LASF28
+ 134 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 135 001d 00000000 		.4byte	0
+ 136 0021 00000000 		.4byte	.Ldebug_line0
+ 137 0025 02       		.uleb128 0x2
+ 138 0026 01       		.byte	0x1
+ 139 0027 06       		.byte	0x6
+ 140 0028 F1010000 		.4byte	.LASF0
+ 141 002c 02       		.uleb128 0x2
+ 142 002d 01       		.byte	0x1
+ 143 002e 08       		.byte	0x8
+ 144 002f 29000000 		.4byte	.LASF1
+ 145 0033 02       		.uleb128 0x2
+ 146 0034 02       		.byte	0x2
+ 147 0035 05       		.byte	0x5
+ 148 0036 CC010000 		.4byte	.LASF2
+ 149 003a 02       		.uleb128 0x2
+ 150 003b 02       		.byte	0x2
+ 151 003c 07       		.byte	0x7
+ 152 003d D7000000 		.4byte	.LASF3
+ 153 0041 03       		.uleb128 0x3
+ 154 0042 11000000 		.4byte	.LASF9
+ 155 0046 02       		.byte	0x2
+ 156 0047 3F       		.byte	0x3f
+ 157 0048 4C000000 		.4byte	0x4c
+ 158 004c 02       		.uleb128 0x2
+ 159 004d 04       		.byte	0x4
+ 160 004e 05       		.byte	0x5
+ 161 004f DC010000 		.4byte	.LASF4
+ 162 0053 02       		.uleb128 0x2
+ 163 0054 04       		.byte	0x4
+ 164 0055 07       		.byte	0x7
+ 165 0056 C5000000 		.4byte	.LASF5
+ 166 005a 02       		.uleb128 0x2
+ 167 005b 08       		.byte	0x8
+ 168 005c 05       		.byte	0x5
+ 169 005d A5010000 		.4byte	.LASF6
+ 170 0061 02       		.uleb128 0x2
+ 171 0062 08       		.byte	0x8
+ 172 0063 07       		.byte	0x7
+ 173 0064 71010000 		.4byte	.LASF7
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 5
+
+
+ 174 0068 04       		.uleb128 0x4
+ 175 0069 04       		.byte	0x4
+ 176 006a 05       		.byte	0x5
+ 177 006b 696E7400 		.ascii	"int\000"
+ 178 006f 02       		.uleb128 0x2
+ 179 0070 04       		.byte	0x4
+ 180 0071 07       		.byte	0x7
+ 181 0072 64010000 		.4byte	.LASF8
+ 182 0076 03       		.uleb128 0x3
+ 183 0077 88010000 		.4byte	.LASF10
+ 184 007b 03       		.byte	0x3
+ 185 007c 2C       		.byte	0x2c
+ 186 007d 41000000 		.4byte	0x41
+ 187 0081 05       		.uleb128 0x5
+ 188 0082 D6010000 		.4byte	.LASF11
+ 189 0086 04       		.byte	0x4
+ 190 0087 E801     		.2byte	0x1e8
+ 191 0089 2C000000 		.4byte	0x2c
+ 192 008d 02       		.uleb128 0x2
+ 193 008e 04       		.byte	0x4
+ 194 008f 04       		.byte	0x4
+ 195 0090 1B000000 		.4byte	.LASF12
+ 196 0094 02       		.uleb128 0x2
+ 197 0095 08       		.byte	0x8
+ 198 0096 04       		.byte	0x4
+ 199 0097 58010000 		.4byte	.LASF13
+ 200 009b 02       		.uleb128 0x2
+ 201 009c 01       		.byte	0x1
+ 202 009d 08       		.byte	0x8
+ 203 009e BA010000 		.4byte	.LASF14
+ 204 00a2 02       		.uleb128 0x2
+ 205 00a3 08       		.byte	0x8
+ 206 00a4 04       		.byte	0x4
+ 207 00a5 E5010000 		.4byte	.LASF15
+ 208 00a9 02       		.uleb128 0x2
+ 209 00aa 04       		.byte	0x4
+ 210 00ab 07       		.byte	0x7
+ 211 00ac 90010000 		.4byte	.LASF16
+ 212 00b0 06       		.uleb128 0x6
+ 213 00b1 04       		.byte	0x4
+ 214 00b2 9B000000 		.4byte	0x9b
+ 215 00b6 06       		.uleb128 0x6
+ 216 00b7 04       		.byte	0x4
+ 217 00b8 BC000000 		.4byte	0xbc
+ 218 00bc 07       		.uleb128 0x7
+ 219 00bd 9B000000 		.4byte	0x9b
+ 220 00c1 08       		.uleb128 0x8
+ 221 00c2 5F010000 		.4byte	.LASF29
+ 222 00c6 01       		.byte	0x1
+ 223 00c7 0E       		.byte	0xe
+ 224 00c8 68000000 		.4byte	0x68
+ 225 00cc 00000000 		.4byte	.LFB63
+ 226 00d0 54000000 		.4byte	.LFE63-.LFB63
+ 227 00d4 01       		.uleb128 0x1
+ 228 00d5 9C       		.byte	0x9c
+ 229 00d6 C1010000 		.4byte	0x1c1
+ 230 00da 09       		.uleb128 0x9
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 6
+
+
+ 231 00db 21000000 		.4byte	.LASF17
+ 232 00df 01       		.byte	0x1
+ 233 00e0 12       		.byte	0x12
+ 234 00e1 81000000 		.4byte	0x81
+ 235 00e5 00000000 		.4byte	.LLST0
+ 236 00e9 0A       		.uleb128 0xa
+ 237 00ea 0B000000 		.4byte	.LASF18
+ 238 00ee 01       		.byte	0x1
+ 239 00ef 13       		.byte	0x13
+ 240 00f0 C1010000 		.4byte	0x1c1
+ 241 00f4 02       		.uleb128 0x2
+ 242 00f5 91       		.byte	0x91
+ 243 00f6 64       		.sleb128 -28
+ 244 00f7 0B       		.uleb128 0xb
+ 245 00f8 38000000 		.4byte	.LBB2
+ 246 00fc 1C000000 		.4byte	.LBE2-.LBB2
+ 247 0100 53010000 		.4byte	0x153
+ 248 0104 0C       		.uleb128 0xc
+ 249 0105 0C020000 		.4byte	.LASF19
+ 250 0109 05       		.byte	0x5
+ 251 010a 00       		.byte	0
+ 252 010b 68000000 		.4byte	0x68
+ 253 010f 1F010000 		.4byte	0x11f
+ 254 0113 0D       		.uleb128 0xd
+ 255 0114 B0000000 		.4byte	0xb0
+ 256 0118 0D       		.uleb128 0xd
+ 257 0119 B6000000 		.4byte	0xb6
+ 258 011d 0E       		.uleb128 0xe
+ 259 011e 00       		.byte	0
+ 260 011f 0F       		.uleb128 0xf
+ 261 0120 42000000 		.4byte	.LVL11
+ 262 0124 E2010000 		.4byte	0x1e2
+ 263 0128 42010000 		.4byte	0x142
+ 264 012c 10       		.uleb128 0x10
+ 265 012d 01       		.uleb128 0x1
+ 266 012e 50       		.byte	0x50
+ 267 012f 02       		.uleb128 0x2
+ 268 0130 91       		.byte	0x91
+ 269 0131 64       		.sleb128 -28
+ 270 0132 10       		.uleb128 0x10
+ 271 0133 01       		.uleb128 0x1
+ 272 0134 51       		.byte	0x51
+ 273 0135 05       		.uleb128 0x5
+ 274 0136 03       		.byte	0x3
+ 275 0137 0C000000 		.4byte	.LC1
+ 276 013b 10       		.uleb128 0x10
+ 277 013c 01       		.uleb128 0x1
+ 278 013d 52       		.byte	0x52
+ 279 013e 02       		.uleb128 0x2
+ 280 013f 74       		.byte	0x74
+ 281 0140 00       		.sleb128 0
+ 282 0141 00       		.byte	0
+ 283 0142 11       		.uleb128 0x11
+ 284 0143 48000000 		.4byte	.LVL12
+ 285 0147 ED010000 		.4byte	0x1ed
+ 286 014b 10       		.uleb128 0x10
+ 287 014c 01       		.uleb128 0x1
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 7
+
+
+ 288 014d 50       		.byte	0x50
+ 289 014e 02       		.uleb128 0x2
+ 290 014f 91       		.byte	0x91
+ 291 0150 64       		.sleb128 -28
+ 292 0151 00       		.byte	0
+ 293 0152 00       		.byte	0
+ 294 0153 12       		.uleb128 0x12
+ 295 0154 0A000000 		.4byte	.LVL1
+ 296 0158 F8010000 		.4byte	0x1f8
+ 297 015c 0F       		.uleb128 0xf
+ 298 015d 10000000 		.4byte	.LVL2
+ 299 0161 ED010000 		.4byte	0x1ed
+ 300 0165 73010000 		.4byte	0x173
+ 301 0169 10       		.uleb128 0x10
+ 302 016a 01       		.uleb128 0x1
+ 303 016b 50       		.byte	0x50
+ 304 016c 05       		.uleb128 0x5
+ 305 016d 03       		.byte	0x3
+ 306 016e 00000000 		.4byte	.LC0
+ 307 0172 00       		.byte	0
+ 308 0173 12       		.uleb128 0x12
+ 309 0174 16000000 		.4byte	.LVL4
+ 310 0178 03020000 		.4byte	0x203
+ 311 017c 0F       		.uleb128 0xf
+ 312 017d 1E000000 		.4byte	.LVL5
+ 313 0181 0E020000 		.4byte	0x20e
+ 314 0185 8F010000 		.4byte	0x18f
+ 315 0189 10       		.uleb128 0x10
+ 316 018a 01       		.uleb128 0x1
+ 317 018b 50       		.byte	0x50
+ 318 018c 01       		.uleb128 0x1
+ 319 018d 31       		.byte	0x31
+ 320 018e 00       		.byte	0
+ 321 018f 0F       		.uleb128 0xf
+ 322 0190 26000000 		.4byte	.LVL6
+ 323 0194 19020000 		.4byte	0x219
+ 324 0198 A4010000 		.4byte	0x1a4
+ 325 019c 10       		.uleb128 0x10
+ 326 019d 01       		.uleb128 0x1
+ 327 019e 50       		.byte	0x50
+ 328 019f 03       		.uleb128 0x3
+ 329 01a0 0A       		.byte	0xa
+ 330 01a1 F401     		.2byte	0x1f4
+ 331 01a3 00       		.byte	0
+ 332 01a4 0F       		.uleb128 0xf
+ 333 01a5 2C000000 		.4byte	.LVL7
+ 334 01a9 0E020000 		.4byte	0x20e
+ 335 01ad B7010000 		.4byte	0x1b7
+ 336 01b1 10       		.uleb128 0x10
+ 337 01b2 01       		.uleb128 0x1
+ 338 01b3 50       		.byte	0x50
+ 339 01b4 01       		.uleb128 0x1
+ 340 01b5 30       		.byte	0x30
+ 341 01b6 00       		.byte	0
+ 342 01b7 12       		.uleb128 0x12
+ 343 01b8 34000000 		.4byte	.LVL10
+ 344 01bc 24020000 		.4byte	0x224
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 8
+
+
+ 345 01c0 00       		.byte	0
+ 346 01c1 13       		.uleb128 0x13
+ 347 01c2 9B000000 		.4byte	0x9b
+ 348 01c6 D1010000 		.4byte	0x1d1
+ 349 01ca 14       		.uleb128 0x14
+ 350 01cb A9000000 		.4byte	0xa9
+ 351 01cf 13       		.byte	0x13
+ 352 01d0 00       		.byte	0
+ 353 01d1 15       		.uleb128 0x15
+ 354 01d2 F5000000 		.4byte	.LASF30
+ 355 01d6 0A       		.byte	0xa
+ 356 01d7 1207     		.2byte	0x712
+ 357 01d9 DD010000 		.4byte	0x1dd
+ 358 01dd 16       		.uleb128 0x16
+ 359 01de 76000000 		.4byte	0x76
+ 360 01e2 17       		.uleb128 0x17
+ 361 01e3 0C020000 		.4byte	.LASF19
+ 362 01e7 0C020000 		.4byte	.LASF19
+ 363 01eb 05       		.byte	0x5
+ 364 01ec 00       		.byte	0
+ 365 01ed 17       		.uleb128 0x17
+ 366 01ee FD010000 		.4byte	.LASF20
+ 367 01f2 FD010000 		.4byte	.LASF20
+ 368 01f6 06       		.byte	0x6
+ 369 01f7 8B       		.byte	0x8b
+ 370 01f8 17       		.uleb128 0x17
+ 371 01f9 EA000000 		.4byte	.LASF21
+ 372 01fd EA000000 		.4byte	.LASF21
+ 373 0201 06       		.byte	0x6
+ 374 0202 54       		.byte	0x54
+ 375 0203 17       		.uleb128 0x17
+ 376 0204 99010000 		.4byte	.LASF22
+ 377 0208 99010000 		.4byte	.LASF22
+ 378 020c 07       		.byte	0x7
+ 379 020d 29       		.byte	0x29
+ 380 020e 17       		.uleb128 0x17
+ 381 020f 00000000 		.4byte	.LASF23
+ 382 0213 00000000 		.4byte	.LASF23
+ 383 0217 08       		.byte	0x8
+ 384 0218 26       		.byte	0x26
+ 385 0219 17       		.uleb128 0x17
+ 386 021a 14020000 		.4byte	.LASF24
+ 387 021e 14020000 		.4byte	.LASF24
+ 388 0222 09       		.byte	0x9
+ 389 0223 76       		.byte	0x76
+ 390 0224 17       		.uleb128 0x17
+ 391 0225 BF010000 		.4byte	.LASF25
+ 392 0229 BF010000 		.4byte	.LASF25
+ 393 022d 06       		.byte	0x6
+ 394 022e 71       		.byte	0x71
+ 395 022f 00       		.byte	0
+ 396              		.section	.debug_abbrev,"",%progbits
+ 397              	.Ldebug_abbrev0:
+ 398 0000 01       		.uleb128 0x1
+ 399 0001 11       		.uleb128 0x11
+ 400 0002 01       		.byte	0x1
+ 401 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 9
+
+
+ 402 0004 0E       		.uleb128 0xe
+ 403 0005 13       		.uleb128 0x13
+ 404 0006 0B       		.uleb128 0xb
+ 405 0007 03       		.uleb128 0x3
+ 406 0008 0E       		.uleb128 0xe
+ 407 0009 1B       		.uleb128 0x1b
+ 408 000a 0E       		.uleb128 0xe
+ 409 000b 55       		.uleb128 0x55
+ 410 000c 17       		.uleb128 0x17
+ 411 000d 11       		.uleb128 0x11
+ 412 000e 01       		.uleb128 0x1
+ 413 000f 10       		.uleb128 0x10
+ 414 0010 17       		.uleb128 0x17
+ 415 0011 00       		.byte	0
+ 416 0012 00       		.byte	0
+ 417 0013 02       		.uleb128 0x2
+ 418 0014 24       		.uleb128 0x24
+ 419 0015 00       		.byte	0
+ 420 0016 0B       		.uleb128 0xb
+ 421 0017 0B       		.uleb128 0xb
+ 422 0018 3E       		.uleb128 0x3e
+ 423 0019 0B       		.uleb128 0xb
+ 424 001a 03       		.uleb128 0x3
+ 425 001b 0E       		.uleb128 0xe
+ 426 001c 00       		.byte	0
+ 427 001d 00       		.byte	0
+ 428 001e 03       		.uleb128 0x3
+ 429 001f 16       		.uleb128 0x16
+ 430 0020 00       		.byte	0
+ 431 0021 03       		.uleb128 0x3
+ 432 0022 0E       		.uleb128 0xe
+ 433 0023 3A       		.uleb128 0x3a
+ 434 0024 0B       		.uleb128 0xb
+ 435 0025 3B       		.uleb128 0x3b
+ 436 0026 0B       		.uleb128 0xb
+ 437 0027 49       		.uleb128 0x49
+ 438 0028 13       		.uleb128 0x13
+ 439 0029 00       		.byte	0
+ 440 002a 00       		.byte	0
+ 441 002b 04       		.uleb128 0x4
+ 442 002c 24       		.uleb128 0x24
+ 443 002d 00       		.byte	0
+ 444 002e 0B       		.uleb128 0xb
+ 445 002f 0B       		.uleb128 0xb
+ 446 0030 3E       		.uleb128 0x3e
+ 447 0031 0B       		.uleb128 0xb
+ 448 0032 03       		.uleb128 0x3
+ 449 0033 08       		.uleb128 0x8
+ 450 0034 00       		.byte	0
+ 451 0035 00       		.byte	0
+ 452 0036 05       		.uleb128 0x5
+ 453 0037 16       		.uleb128 0x16
+ 454 0038 00       		.byte	0
+ 455 0039 03       		.uleb128 0x3
+ 456 003a 0E       		.uleb128 0xe
+ 457 003b 3A       		.uleb128 0x3a
+ 458 003c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 10
+
+
+ 459 003d 3B       		.uleb128 0x3b
+ 460 003e 05       		.uleb128 0x5
+ 461 003f 49       		.uleb128 0x49
+ 462 0040 13       		.uleb128 0x13
+ 463 0041 00       		.byte	0
+ 464 0042 00       		.byte	0
+ 465 0043 06       		.uleb128 0x6
+ 466 0044 0F       		.uleb128 0xf
+ 467 0045 00       		.byte	0
+ 468 0046 0B       		.uleb128 0xb
+ 469 0047 0B       		.uleb128 0xb
+ 470 0048 49       		.uleb128 0x49
+ 471 0049 13       		.uleb128 0x13
+ 472 004a 00       		.byte	0
+ 473 004b 00       		.byte	0
+ 474 004c 07       		.uleb128 0x7
+ 475 004d 26       		.uleb128 0x26
+ 476 004e 00       		.byte	0
+ 477 004f 49       		.uleb128 0x49
+ 478 0050 13       		.uleb128 0x13
+ 479 0051 00       		.byte	0
+ 480 0052 00       		.byte	0
+ 481 0053 08       		.uleb128 0x8
+ 482 0054 2E       		.uleb128 0x2e
+ 483 0055 01       		.byte	0x1
+ 484 0056 3F       		.uleb128 0x3f
+ 485 0057 19       		.uleb128 0x19
+ 486 0058 03       		.uleb128 0x3
+ 487 0059 0E       		.uleb128 0xe
+ 488 005a 3A       		.uleb128 0x3a
+ 489 005b 0B       		.uleb128 0xb
+ 490 005c 3B       		.uleb128 0x3b
+ 491 005d 0B       		.uleb128 0xb
+ 492 005e 27       		.uleb128 0x27
+ 493 005f 19       		.uleb128 0x19
+ 494 0060 49       		.uleb128 0x49
+ 495 0061 13       		.uleb128 0x13
+ 496 0062 8701     		.uleb128 0x87
+ 497 0064 19       		.uleb128 0x19
+ 498 0065 11       		.uleb128 0x11
+ 499 0066 01       		.uleb128 0x1
+ 500 0067 12       		.uleb128 0x12
+ 501 0068 06       		.uleb128 0x6
+ 502 0069 40       		.uleb128 0x40
+ 503 006a 18       		.uleb128 0x18
+ 504 006b 9742     		.uleb128 0x2117
+ 505 006d 19       		.uleb128 0x19
+ 506 006e 01       		.uleb128 0x1
+ 507 006f 13       		.uleb128 0x13
+ 508 0070 00       		.byte	0
+ 509 0071 00       		.byte	0
+ 510 0072 09       		.uleb128 0x9
+ 511 0073 34       		.uleb128 0x34
+ 512 0074 00       		.byte	0
+ 513 0075 03       		.uleb128 0x3
+ 514 0076 0E       		.uleb128 0xe
+ 515 0077 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 11
+
+
+ 516 0078 0B       		.uleb128 0xb
+ 517 0079 3B       		.uleb128 0x3b
+ 518 007a 0B       		.uleb128 0xb
+ 519 007b 49       		.uleb128 0x49
+ 520 007c 13       		.uleb128 0x13
+ 521 007d 02       		.uleb128 0x2
+ 522 007e 17       		.uleb128 0x17
+ 523 007f 00       		.byte	0
+ 524 0080 00       		.byte	0
+ 525 0081 0A       		.uleb128 0xa
+ 526 0082 34       		.uleb128 0x34
+ 527 0083 00       		.byte	0
+ 528 0084 03       		.uleb128 0x3
+ 529 0085 0E       		.uleb128 0xe
+ 530 0086 3A       		.uleb128 0x3a
+ 531 0087 0B       		.uleb128 0xb
+ 532 0088 3B       		.uleb128 0x3b
+ 533 0089 0B       		.uleb128 0xb
+ 534 008a 49       		.uleb128 0x49
+ 535 008b 13       		.uleb128 0x13
+ 536 008c 02       		.uleb128 0x2
+ 537 008d 18       		.uleb128 0x18
+ 538 008e 00       		.byte	0
+ 539 008f 00       		.byte	0
+ 540 0090 0B       		.uleb128 0xb
+ 541 0091 0B       		.uleb128 0xb
+ 542 0092 01       		.byte	0x1
+ 543 0093 11       		.uleb128 0x11
+ 544 0094 01       		.uleb128 0x1
+ 545 0095 12       		.uleb128 0x12
+ 546 0096 06       		.uleb128 0x6
+ 547 0097 01       		.uleb128 0x1
+ 548 0098 13       		.uleb128 0x13
+ 549 0099 00       		.byte	0
+ 550 009a 00       		.byte	0
+ 551 009b 0C       		.uleb128 0xc
+ 552 009c 2E       		.uleb128 0x2e
+ 553 009d 01       		.byte	0x1
+ 554 009e 3F       		.uleb128 0x3f
+ 555 009f 19       		.uleb128 0x19
+ 556 00a0 03       		.uleb128 0x3
+ 557 00a1 0E       		.uleb128 0xe
+ 558 00a2 3A       		.uleb128 0x3a
+ 559 00a3 0B       		.uleb128 0xb
+ 560 00a4 3B       		.uleb128 0x3b
+ 561 00a5 0B       		.uleb128 0xb
+ 562 00a6 27       		.uleb128 0x27
+ 563 00a7 19       		.uleb128 0x19
+ 564 00a8 49       		.uleb128 0x49
+ 565 00a9 13       		.uleb128 0x13
+ 566 00aa 3C       		.uleb128 0x3c
+ 567 00ab 19       		.uleb128 0x19
+ 568 00ac 01       		.uleb128 0x1
+ 569 00ad 13       		.uleb128 0x13
+ 570 00ae 00       		.byte	0
+ 571 00af 00       		.byte	0
+ 572 00b0 0D       		.uleb128 0xd
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 12
+
+
+ 573 00b1 05       		.uleb128 0x5
+ 574 00b2 00       		.byte	0
+ 575 00b3 49       		.uleb128 0x49
+ 576 00b4 13       		.uleb128 0x13
+ 577 00b5 00       		.byte	0
+ 578 00b6 00       		.byte	0
+ 579 00b7 0E       		.uleb128 0xe
+ 580 00b8 18       		.uleb128 0x18
+ 581 00b9 00       		.byte	0
+ 582 00ba 00       		.byte	0
+ 583 00bb 00       		.byte	0
+ 584 00bc 0F       		.uleb128 0xf
+ 585 00bd 898201   		.uleb128 0x4109
+ 586 00c0 01       		.byte	0x1
+ 587 00c1 11       		.uleb128 0x11
+ 588 00c2 01       		.uleb128 0x1
+ 589 00c3 31       		.uleb128 0x31
+ 590 00c4 13       		.uleb128 0x13
+ 591 00c5 01       		.uleb128 0x1
+ 592 00c6 13       		.uleb128 0x13
+ 593 00c7 00       		.byte	0
+ 594 00c8 00       		.byte	0
+ 595 00c9 10       		.uleb128 0x10
+ 596 00ca 8A8201   		.uleb128 0x410a
+ 597 00cd 00       		.byte	0
+ 598 00ce 02       		.uleb128 0x2
+ 599 00cf 18       		.uleb128 0x18
+ 600 00d0 9142     		.uleb128 0x2111
+ 601 00d2 18       		.uleb128 0x18
+ 602 00d3 00       		.byte	0
+ 603 00d4 00       		.byte	0
+ 604 00d5 11       		.uleb128 0x11
+ 605 00d6 898201   		.uleb128 0x4109
+ 606 00d9 01       		.byte	0x1
+ 607 00da 11       		.uleb128 0x11
+ 608 00db 01       		.uleb128 0x1
+ 609 00dc 31       		.uleb128 0x31
+ 610 00dd 13       		.uleb128 0x13
+ 611 00de 00       		.byte	0
+ 612 00df 00       		.byte	0
+ 613 00e0 12       		.uleb128 0x12
+ 614 00e1 898201   		.uleb128 0x4109
+ 615 00e4 00       		.byte	0
+ 616 00e5 11       		.uleb128 0x11
+ 617 00e6 01       		.uleb128 0x1
+ 618 00e7 31       		.uleb128 0x31
+ 619 00e8 13       		.uleb128 0x13
+ 620 00e9 00       		.byte	0
+ 621 00ea 00       		.byte	0
+ 622 00eb 13       		.uleb128 0x13
+ 623 00ec 01       		.uleb128 0x1
+ 624 00ed 01       		.byte	0x1
+ 625 00ee 49       		.uleb128 0x49
+ 626 00ef 13       		.uleb128 0x13
+ 627 00f0 01       		.uleb128 0x1
+ 628 00f1 13       		.uleb128 0x13
+ 629 00f2 00       		.byte	0
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 13
+
+
+ 630 00f3 00       		.byte	0
+ 631 00f4 14       		.uleb128 0x14
+ 632 00f5 21       		.uleb128 0x21
+ 633 00f6 00       		.byte	0
+ 634 00f7 49       		.uleb128 0x49
+ 635 00f8 13       		.uleb128 0x13
+ 636 00f9 2F       		.uleb128 0x2f
+ 637 00fa 0B       		.uleb128 0xb
+ 638 00fb 00       		.byte	0
+ 639 00fc 00       		.byte	0
+ 640 00fd 15       		.uleb128 0x15
+ 641 00fe 34       		.uleb128 0x34
+ 642 00ff 00       		.byte	0
+ 643 0100 03       		.uleb128 0x3
+ 644 0101 0E       		.uleb128 0xe
+ 645 0102 3A       		.uleb128 0x3a
+ 646 0103 0B       		.uleb128 0xb
+ 647 0104 3B       		.uleb128 0x3b
+ 648 0105 05       		.uleb128 0x5
+ 649 0106 49       		.uleb128 0x49
+ 650 0107 13       		.uleb128 0x13
+ 651 0108 3F       		.uleb128 0x3f
+ 652 0109 19       		.uleb128 0x19
+ 653 010a 3C       		.uleb128 0x3c
+ 654 010b 19       		.uleb128 0x19
+ 655 010c 00       		.byte	0
+ 656 010d 00       		.byte	0
+ 657 010e 16       		.uleb128 0x16
+ 658 010f 35       		.uleb128 0x35
+ 659 0110 00       		.byte	0
+ 660 0111 49       		.uleb128 0x49
+ 661 0112 13       		.uleb128 0x13
+ 662 0113 00       		.byte	0
+ 663 0114 00       		.byte	0
+ 664 0115 17       		.uleb128 0x17
+ 665 0116 2E       		.uleb128 0x2e
+ 666 0117 00       		.byte	0
+ 667 0118 3F       		.uleb128 0x3f
+ 668 0119 19       		.uleb128 0x19
+ 669 011a 3C       		.uleb128 0x3c
+ 670 011b 19       		.uleb128 0x19
+ 671 011c 6E       		.uleb128 0x6e
+ 672 011d 0E       		.uleb128 0xe
+ 673 011e 03       		.uleb128 0x3
+ 674 011f 0E       		.uleb128 0xe
+ 675 0120 3A       		.uleb128 0x3a
+ 676 0121 0B       		.uleb128 0xb
+ 677 0122 3B       		.uleb128 0x3b
+ 678 0123 0B       		.uleb128 0xb
+ 679 0124 00       		.byte	0
+ 680 0125 00       		.byte	0
+ 681 0126 00       		.byte	0
+ 682              		.section	.debug_loc,"",%progbits
+ 683              	.Ldebug_loc0:
+ 684              	.LLST0:
+ 685 0000 06000000 		.4byte	.LVL0
+ 686 0004 12000000 		.4byte	.LVL3
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 14
+
+
+ 687 0008 0200     		.2byte	0x2
+ 688 000a 30       		.byte	0x30
+ 689 000b 9F       		.byte	0x9f
+ 690 000c 12000000 		.4byte	.LVL3
+ 691 0010 2E000000 		.4byte	.LVL8
+ 692 0014 0100     		.2byte	0x1
+ 693 0016 54       		.byte	0x54
+ 694 0017 30000000 		.4byte	.LVL9
+ 695 001b 54000000 		.4byte	.LFE63
+ 696 001f 0100     		.2byte	0x1
+ 697 0021 54       		.byte	0x54
+ 698 0022 00000000 		.4byte	0
+ 699 0026 00000000 		.4byte	0
+ 700              		.section	.debug_aranges,"",%progbits
+ 701 0000 1C000000 		.4byte	0x1c
+ 702 0004 0200     		.2byte	0x2
+ 703 0006 00000000 		.4byte	.Ldebug_info0
+ 704 000a 04       		.byte	0x4
+ 705 000b 00       		.byte	0
+ 706 000c 0000     		.2byte	0
+ 707 000e 0000     		.2byte	0
+ 708 0010 00000000 		.4byte	.LFB63
+ 709 0014 54000000 		.4byte	.LFE63-.LFB63
+ 710 0018 00000000 		.4byte	0
+ 711 001c 00000000 		.4byte	0
+ 712              		.section	.debug_ranges,"",%progbits
+ 713              	.Ldebug_ranges0:
+ 714 0000 00000000 		.4byte	.LFB63
+ 715 0004 54000000 		.4byte	.LFE63
+ 716 0008 00000000 		.4byte	0
+ 717 000c 00000000 		.4byte	0
+ 718              		.section	.debug_line,"",%progbits
+ 719              	.Ldebug_line0:
+ 720 0000 94010000 		.section	.debug_str,"MS",%progbits,1
+ 720      02007101 
+ 720      00000201 
+ 720      FB0E0D00 
+ 720      01010101 
+ 721              	.LASF23:
+ 722 0000 4C454431 		.ascii	"LED1_Write\000"
+ 722      5F577269 
+ 722      746500
+ 723              	.LASF18:
+ 724 000b 76616C75 		.ascii	"value\000"
+ 724      6500
+ 725              	.LASF9:
+ 726 0011 5F5F696E 		.ascii	"__int32_t\000"
+ 726      7433325F 
+ 726      7400
+ 727              	.LASF12:
+ 728 001b 666C6F61 		.ascii	"float\000"
+ 728      7400
+ 729              	.LASF17:
+ 730 0021 636F756E 		.ascii	"counter\000"
+ 730      74657200 
+ 731              	.LASF1:
+ 732 0029 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 15
+
+
+ 732      676E6564 
+ 732      20636861 
+ 732      7200
+ 733              	.LASF26:
+ 734 0037 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 734      43313120 
+ 734      352E342E 
+ 734      31203230 
+ 734      31363036 
+ 735 006a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 735      20726576 
+ 735      6973696F 
+ 735      6E203233 
+ 735      37373135 
+ 736 009d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 736      66756E63 
+ 736      74696F6E 
+ 736      2D736563 
+ 736      74696F6E 
+ 737              	.LASF5:
+ 738 00c5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 738      20756E73 
+ 738      69676E65 
+ 738      6420696E 
+ 738      7400
+ 739              	.LASF3:
+ 740 00d7 73686F72 		.ascii	"short unsigned int\000"
+ 740      7420756E 
+ 740      7369676E 
+ 740      65642069 
+ 740      6E7400
+ 741              	.LASF21:
+ 742 00ea 55415254 		.ascii	"UART_Start\000"
+ 742      5F537461 
+ 742      727400
+ 743              	.LASF30:
+ 744 00f5 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 744      52784275 
+ 744      66666572 
+ 744      00
+ 745              	.LASF28:
+ 746 0102 433A5C55 		.ascii	"C:\\Users\\phuon\\Desktop\\Program\\PSoC Creator\\P"
+ 746      73657273 
+ 746      5C706875 
+ 746      6F6E5C44 
+ 746      65736B74 
+ 747 012f 726F6A65 		.ascii	"rojects\\Design01\\Design01\\Design01.cydsn\000"
+ 747      6374735C 
+ 747      44657369 
+ 747      676E3031 
+ 747      5C446573 
+ 748              	.LASF13:
+ 749 0158 646F7562 		.ascii	"double\000"
+ 749      6C6500
+ 750              	.LASF29:
+ 751 015f 6D61696E 		.ascii	"main\000"
+ 751      00
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 16
+
+
+ 752              	.LASF8:
+ 753 0164 756E7369 		.ascii	"unsigned int\000"
+ 753      676E6564 
+ 753      20696E74 
+ 753      00
+ 754              	.LASF7:
+ 755 0171 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 755      206C6F6E 
+ 755      6720756E 
+ 755      7369676E 
+ 755      65642069 
+ 756              	.LASF10:
+ 757 0188 696E7433 		.ascii	"int32_t\000"
+ 757      325F7400 
+ 758              	.LASF16:
+ 759 0190 73697A65 		.ascii	"sizetype\000"
+ 759      74797065 
+ 759      00
+ 760              	.LASF22:
+ 761 0199 42757474 		.ascii	"Button_Read\000"
+ 761      6F6E5F52 
+ 761      65616400 
+ 762              	.LASF6:
+ 763 01a5 6C6F6E67 		.ascii	"long long int\000"
+ 763      206C6F6E 
+ 763      6720696E 
+ 763      7400
+ 764              	.LASF27:
+ 765 01b3 6D61696E 		.ascii	"main.c\000"
+ 765      2E6300
+ 766              	.LASF14:
+ 767 01ba 63686172 		.ascii	"char\000"
+ 767      00
+ 768              	.LASF25:
+ 769 01bf 55415254 		.ascii	"UART_GetChar\000"
+ 769      5F476574 
+ 769      43686172 
+ 769      00
+ 770              	.LASF2:
+ 771 01cc 73686F72 		.ascii	"short int\000"
+ 771      7420696E 
+ 771      7400
+ 772              	.LASF11:
+ 773 01d6 75696E74 		.ascii	"uint8\000"
+ 773      3800
+ 774              	.LASF4:
+ 775 01dc 6C6F6E67 		.ascii	"long int\000"
+ 775      20696E74 
+ 775      00
+ 776              	.LASF15:
+ 777 01e5 6C6F6E67 		.ascii	"long double\000"
+ 777      20646F75 
+ 777      626C6500 
+ 778              	.LASF0:
+ 779 01f1 7369676E 		.ascii	"signed char\000"
+ 779      65642063 
+ 779      68617200 
+ARM GAS  C:\Users\phuon\AppData\Local\Temp\ccAJMWCW.s 			page 17
+
+
+ 780              	.LASF20:
+ 781 01fd 55415254 		.ascii	"UART_PutString\000"
+ 781      5F507574 
+ 781      53747269 
+ 781      6E6700
+ 782              	.LASF19:
+ 783 020c 73707269 		.ascii	"sprintf\000"
+ 783      6E746600 
+ 784              	.LASF24:
+ 785 0214 43794465 		.ascii	"CyDelay\000"
+ 785      6C617900 
+ 786              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
